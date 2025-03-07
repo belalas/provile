@@ -1,0 +1,602 @@
+/*===== GOOGLE FONTS - استيراد خط Poppins من Google Fonts =====*/
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+
+/*===== VARIABLES CSS - تعريف المتغيرات الجذرية (Root) لاستخدامها في التصميم =====*/
+:root {
+    --header-height: 3rem; /* تحديد ارتفاع شريط التنقل */
+    --font-semi: 600; /* سمك الخط */
+
+    /*===== Colors - الألوان الأساسية للموقع باستخدام HSL =====*/
+    /* يمكن تغيير --hue-color لتغيير اللون الرئيسي */
+    --hue-color: 224; /* اللون الأساسي الافتراضي أزرق */
+    --first-color: hsl(var(--hue-color), 89%, 60%); /* لون رئيسي */
+    --second-color: hsl(var(--hue-color), 56%, 12%); /* لون ثانوي */
+
+    /*===== Font typography - إعدادات الخطوط =====*/
+    --body-font: 'Poppins', sans-serif; /* تعيين الخط الرئيسي للموقع */
+    --big-font-size: 2rem; /* حجم الخط الكبير للعناوين */
+    --h2-font-size: 1.25rem; /* حجم الخط للعناوين الفرعية */
+    --normal-font-size: .938rem; /* الحجم الافتراضي للنص */
+    --smaller-font-size: .75rem; /* حجم الخط الصغير */
+
+    /*===== Margins - هوامش بين العناصر =====*/
+    --mb-2: 1rem; /* هامش صغير */
+    --mb-4: 2rem; /* هامش متوسط */
+    --mb-5: 2.5rem; /* هامش كبير */
+    --mb-6: 3rem; /* هامش كبير جدًا */
+
+    /*===== z index - تحديد ترتيب العناصر فوق بعضها =====*/
+    --z-back: -10; /* عنصر في الخلفية */
+    --z-fixed: 100; /* عنصر ثابت في الأعلى */
+}
+
+/*===== MEDIA QUERY - تغييرات على الخطوط للشاشات الكبيرة (أكبر من 968px) =====*/
+@media screen and (min-width: 968px) {
+    :root {
+        --big-font-size: 3.5rem; /* تكبير العناوين */
+        --h2-font-size: 2rem; /* تكبير العناوين الفرعية */
+        --normal-font-size: 1rem; /* تكبير النصوص */
+        --smaller-font-size: .875rem; /* تكبير النص الصغير */
+    }
+}
+
+/*===== BASE - القواعد الأساسية للموقع =====*/
+
+/* تطبيق box-sizing على جميع العناصر لضبط الأحجام بشكل دقيق */
+*, ::before, ::after {
+    box-sizing: border-box;
+}
+
+/* تحسين تجربة التمرير عبر الموقع */
+html {
+    scroll-behavior: smooth;
+}
+
+/* إعدادات النصوص والألوان الأساسية للموقع */
+body {
+    margin: var(--header-height) 0 0 0; /* إزاحة بمقدار ارتفاع شريط التنقل */
+    font-family: var(--body-font); /* تحديد نوع الخط */
+    font-size: var(--normal-font-size); /* تعيين الحجم الافتراضي للنصوص */
+    color: var(--second-color); /* تعيين لون النصوص */
+}
+
+/* إزالة الهوامش الافتراضية من العناوين والفقرات */
+h1, h2, p {
+    margin: 0;
+}
+
+/* إزالة التعداد النقطي والمسافات من القوائم */
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* إزالة الخط السفلي الافتراضي من الروابط */
+a {
+    text-decoration: none;
+}
+
+/* ضبط الصور لجعلها متجاوبة */
+img {
+    max-width: 100%; /* لا تتجاوز الصورة عرض العنصر الحاوي */
+    height: auto; /* الحفاظ على نسبة العرض إلى الارتفاع */
+    display: block; /* تحسين عرض الصور داخل الحاويات */
+}
+/*===== CLASS CSS - تنسيقات العناوين والأقسام =====*/
+
+/* تصميم عنوان الأقسام */
+.section-title {
+    position: relative; /* تحديد موضع العنوان بالنسبة للعنصر الحاوي */
+    font-size: var(--h2-font-size); /* استخدام حجم الخط المحدد مسبقًا */
+    color: var(--first-color); /* تعيين اللون الرئيسي للعناوين */
+    margin-top: var(--mb-2); /* إضافة هامش علوي */
+    margin-bottom: var(--mb-4); /* إضافة هامش سفلي */
+    text-align: center; /* توسيط العنوان */
+}
+
+/* إضافة خط زخرفي أسفل العنوان */
+.section-title::after {
+    position: absolute; /* تحديد موقع الخط بالنسبة للعنوان */
+    content: ''; /* إضافة عنصر فارغ */
+    width: 64px; /* عرض الخط */
+    height: 0.18rem; /* ارتفاع الخط */
+    left: 0;
+    right: 0;
+    margin: auto; /* توسيط الخط تحت العنوان */
+    top: 2rem; /* المسافة بين العنوان والخط */
+    background-color: var(--first-color); /* لون الخط */
+}
+
+/* تحديد المسافة العلوية والسفلية للأقسام */
+.section {
+    padding-top: 3rem; /* المسافة العلوية */
+    padding-bottom: 2rem; /* المسافة السفلية */
+}
+
+/*===== LAYOUT - تخطيط الصفحة =====*/
+
+/* إنشاء تخطيط شبكي للأقسام */
+.bd-grid {
+    max-width: 1024px; /* تحديد الحد الأقصى لعرض المحتوى */
+    display: grid; /* استخدام نظام الشبكة Grid */
+    margin-left: var(--mb-2); /* ضبط الهوامش الجانبية */
+    margin-right: var(--mb-2);
+}
+
+/*===== تصميم شريط التنقل العلوي (Header) =====*/
+.l-header {
+    width: 100%; /* عرض الهيدر ليشمل العرض الكامل للصفحة */
+    position: fixed; /* تثبيت الهيدر في أعلى الصفحة عند التمرير */
+    top: 0;
+    left: 0;
+    z-index: var(--z-fixed); /* جعله فوق باقي العناصر */
+    background-color: #fff; /* لون خلفية الهيدر */
+    box-shadow: 0 1px 4px rgba(146, 161, 176, 0.15); /* إضافة ظل بسيط للهيدر */
+}
+
+/*===== NAV - تنسيق قائمة التنقل =====*/
+.nav {
+    height: var(--header-height); /* تحديد ارتفاع شريط التنقل */
+    display: flex; /* استخدام Flexbox لمحاذاة العناصر */
+    justify-content: space-between; /* توزيع العناصر على جانبي القائمة */
+    align-items: center; /* توسيط العناصر رأسيًا */
+    font-weight: var(--font-semi); /* تحديد سماكة الخط */
+}
+
+/*===== تصميم القائمة الجانبية عند تصغير الشاشة (أقل من 767px) =====*/
+@media screen and (max-width: 767px) {
+    .nav__menu {
+        position: fixed; /* جعل القائمة عائمة عند فتحها */
+        top: var(--header-height); /* جعلها تبدأ أسفل الهيدر */
+        right: -100%; /* إخفاؤها خارج الشاشة */
+        width: 80%; /* تحديد عرض القائمة */
+        height: 100%; /* جعلها تمتد على ارتفاع الشاشة بالكامل */
+        padding: 2rem; /* إضافة تباعد داخلي */
+        background-color: var(--second-color); /* تغيير لون الخلفية */
+        transition: .5s; /* إضافة تأثير انسيابي عند الفتح والإغلاق */
+    }
+}
+
+/*===== تنسيق العناصر داخل القائمة =====*/
+.nav__item {
+    margin-bottom: var(--mb-4); /* إضافة تباعد بين العناصر */
+}
+
+/*===== تنسيق روابط القائمة =====*/
+.nav__link {
+    position: relative; /* تحديد موقع العنصر */
+    color: #fff; /* تعيين لون النص */
+}
+
+/* تأثير عند تمرير الماوس فوق الروابط */
+.nav__link:hover {
+    position: relative; /* إبقاء العنصر في مكانه */
+}
+
+/* إضافة خط زخرفي أسفل الروابط عند تمرير الماوس */
+.nav__link:hover::after {
+    position: absolute;
+    content: ''; /* إنشاء عنصر فارغ */
+    width: 100%; /* جعله بعرض النص */
+    height: 0.18rem; /* ارتفاع الخط */
+    left: 0;
+    top: 2rem; /* المسافة بين الرابط والخط */
+    background-color: var(--first-color); /* لون الخط */
+}
+
+/*===== تصميم شعار الموقع في شريط التنقل =====*/
+.nav__logo {
+    color: var(--second-color); /* تحديد لون الشعار */
+}
+
+/*===== تصميم زر القائمة الجانبية (الهامبرغر) في الهواتف =====*/
+.nav__toggle {
+    color: var(--second-color); /* تحديد لون الأيقونة */
+    font-size: 1.5rem; /* تكبير حجم الأيقونة */
+    cursor: pointer; /* تغيير المؤشر إلى شكل اليد عند تمرير الماوس */
+}
+/*===== تحديد نمط القائمة النشطة (Active Menu) =====*/
+
+/* إضافة خط سفلي عند تحديد العنصر النشط في القائمة */
+.active::after {
+    position: absolute; /* تحديد الموقع بالنسبة للرابط */
+    content: ''; /* إنشاء عنصر فارغ */
+    width: 100%; /* جعله يمتد على عرض العنصر */
+    height: 0.18rem; /* سمك الخط */
+    left: 0; /* ضبط موقعه من اليسار */
+    top: 2rem; /* المسافة بين النص والخط */
+    background-color: var(--first-color); /* لون الخط */
+}
+
+/*===== Show menu - عرض القائمة الجانبية عند النقر على زر القائمة =====*/
+.show {
+    right: 0; /* تحريك القائمة إلى موقعها داخل الشاشة */
+}
+
+/*===== HOME - تنسيق قسم الصفحة الرئيسية =====*/
+.home {
+    position: relative; /* تحديد موقع القسم ليتمكن من احتواء العناصر داخله */
+    row-gap: 5rem; /* تحديد المسافة بين العناصر الداخلية */
+    padding: 4rem 0 5rem; /* إضافة هوامش علوية وسفلية */
+}
+
+/*===== بيانات الصفحة الرئيسية =====*/
+.home__data {
+    align-self: center; /* محاذاة النص في المنتصف */
+}
+
+/*===== العنوان الرئيسي في الصفحة =====*/
+.home__title {
+    font-size: var(--big-font-size); /* تعيين حجم العنوان */
+    margin-bottom: var(--mb-5); /* إضافة تباعد سفلي */
+}
+
+/*===== تلوين جزء من العنوان =====*/
+.home__title-color {
+    color: var(--first-color); /* تعيين اللون الرئيسي لجزء من العنوان */
+}
+
+/*===== تصميم أيقونات وسائل التواصل الاجتماعي =====*/
+.home__social {
+    display: flex; /* استخدام Flexbox لمحاذاة العناصر */
+    flex-direction: column; /* ترتيب الأيقونات عموديًا */
+}
+
+/*===== تصميم أيقونات وسائل التواصل =====*/
+.home__social-icon {
+    width: max-content; /* جعل العرض يتناسب مع المحتوى */
+    margin-bottom: var(--mb-2); /* إضافة تباعد بين الأيقونات */
+    font-size: 1.5rem; /* تعيين حجم الأيقونات */
+    color: var(--second-color); /* تحديد لون الأيقونات */
+}
+
+/*===== تغيير لون الأيقونات عند تمرير الماوس =====*/
+.home__social-icon:hover {
+    color: var(--first-color); /* تغيير اللون إلى اللون الأساسي عند التفاعل */
+}
+
+/*===== تصميم صورة المستخدم =====*/
+.home__img {
+    position: absolute; /* تحديد موقع الصورة بالنسبة للعنصر الحاوي */
+    right: 0; /* محاذاتها إلى اليمين */
+    bottom: 0; /* محاذاتها في الأسفل */
+    width: 260px; /* تحديد عرض الصورة */
+}
+
+/*===== تغيير لون الشكل المحيط بالصورة =====*/
+.home__blob {
+    fill: var(--first-color); /* تغيير لون الشكل المحيط */
+}
+
+/*===== ضبط حجم صورة المستخدم داخل الشكل =====*/
+.home__blob-img {
+    width: 360px; /* تحديد عرض الصورة */
+}
+/*===== BUTTONS - تصميم الأزرار =====*/
+.button {
+    display: inline-block; /* جعل الزر يظهر كعنصر خطي مع إمكانية تحديد العرض والارتفاع */
+    background-color: var(--first-color); /* تعيين لون الخلفية */
+    color: #fff; /* تحديد لون النص */
+    padding: .75rem 2.5rem; /* تحديد الهوامش الداخلية (العلوية والسفلية - الجانبية) */
+    font-weight: var(--font-semi); /* تحديد سماكة الخط */
+    border-radius: .5rem; /* جعل الزوايا مستديرة */
+    transition: all .3s; /* إضافة تأثير انتقالي عند التفاعل */
+}
+
+/* تأثير عند تمرير الماوس على الزر */
+.button:hover {
+    box-shadow: rgba(17, 17, 26, 0.3) 0px 8px 24px, 
+                rgba(17, 17, 26, 0.3) 0px 16px 56px, 
+                rgba(17, 17, 26, 0.3) 0px 24px 80px; /* إضافة ظل عند التفاعل */
+    background-color: var(--second-color); /* تغيير لون الخلفية */
+}
+
+/* ===== ABOUT - تنسيق قسم "نبذة عني" ===== */
+.about__container {
+    row-gap: 2rem; /* تحديد المسافة بين العناصر داخل القسم */
+    text-align: center; /* توسيط النص */
+}
+
+.about__subtitle {
+    margin-bottom: var(--mb-2); /* إضافة هامش سفلي */
+}
+
+/* تصميم صورة المستخدم في قسم "نبذة عني" */
+.about__img {
+    justify-self: center; /* توسيط الصورة */
+}
+
+.about__img img {
+    width: 200px; /* تحديد عرض الصورة */
+    border-radius: .5rem; /* جعل الزوايا مستديرة */
+    box-shadow: 0px 4px 25px rgba(14, 36, 49, 0.792); /* إضافة ظل للصورة */
+}
+
+/* ===== SKILLS - تنسيق قسم المهارات ===== */
+.skills__container {
+    row-gap: 2rem; /* المسافة بين العناصر */
+    text-align: center; /* توسيط النص */
+}
+
+.skills__subtitle {
+    margin-bottom: var(--mb-2); /* تحديد هامش سفلي */
+}
+
+.skills__text {
+    margin-bottom: var(--mb-4); /* إضافة هامش أسفل الفقرة */
+}
+
+/* تصميم صندوق المهارات */
+.skills__data {
+    display: flex; /* استخدام Flexbox لمحاذاة العناصر */
+    justify-content: space-between; /* توزيع العناصر بالتساوي */
+    align-items: center; /* محاذاة العناصر رأسيًا */
+    position: relative; /* تحديد الموقع بالنسبة للصندوق */
+    font-weight: var(--font-semi); /* تحديد سماكة الخط */
+    padding: .5rem 1rem; /* تحديد الهوامش الداخلية */
+    margin-bottom: var(--mb-4); /* إضافة هامش سفلي */
+    border-radius: .5rem; /* جعل الزوايا مستديرة */
+    box-shadow: 0px 4px 25px rgba(14, 36, 49, 0.15); /* إضافة ظل */
+}
+
+/* تصميم أيقونات المهارات */
+.skills__icon {
+    font-size: 2rem; /* تكبير حجم الأيقونة */
+    margin-right: var(--mb-2); /* تحديد هامش يمين */
+    color: var(--first-color); /* تعيين لون الأيقونة */
+}
+
+/* تنسيق أسماء المهارات */
+.skills__names {
+    display: flex; /* استخدام Flexbox لمحاذاة النصوص */
+    align-items: center; /* محاذاة العناصر رأسيًا */
+}
+
+/* شريط التقدم للمهارات */
+.skills__bar {
+    position: absolute; /* جعل الشريط داخل العنصر */
+    left: 0; /* محاذاته من اليسار */
+    bottom: 0; /* جعله في الأسفل */
+    background-color: var(--first-color); /* لون الشريط */
+    height: .25rem; /* ارتفاع الشريط */
+    border-radius: .5rem; /* جعل الزوايا مستديرة */
+    z-index: var(--z-back); /* جعله خلف النص */
+}
+
+/* تحديد عرض كل مهارة وفقًا لنسبة الإتقان */
+.skills__html {
+    width: 95%;
+}
+
+.skills__css {
+    width: 85%;
+}
+
+.skills__js {
+    width: 65%;
+}
+
+.skills__ux {
+    width: 85%;
+}
+
+/* تنسيق صورة المهارات */
+.skills__img {
+    border-radius: .5rem; /* جعل الزوايا مستديرة */
+    box-shadow: 0px 4px 25px rgba(14, 36, 49, 0.792); /* إضافة ظل */
+}
+
+/* ===== WORK - تنسيق قسم الأعمال ===== */
+.work__container {
+    row-gap: 2rem; /* المسافة بين عناصر الأعمال */
+}
+
+/* تصميم صورة كل مشروع */
+.work__img {
+    box-shadow: 0px 4px 25px rgba(14, 36, 49, 0.792); /* إضافة ظل */
+    border-radius: .5rem; /* جعل الزوايا مستديرة */
+    overflow: hidden; /* إخفاء أي عناصر تتجاوز الحد */
+}
+
+/* تأثير عند تمرير الماوس على الصور */
+.work__img img {
+    transition: 1s; /* جعل التأثير سلس */
+}
+
+.work__img img:hover {
+    transform: scale(1.1); /* تكبير الصورة عند التفاعل */
+}
+
+/* ===== CONTACT - تنسيق قسم التواصل ===== */
+.contact__input {
+    width: 100%; /* جعل العرض ممتد لكامل العنصر */
+    font-size: var(--normal-font-size); /* تحديد حجم الخط */
+    font-weight: var(--font-semi); /* تحديد سماكة الخط */
+    padding: 1rem; /* تحديد الهوامش الداخلية */
+    border-radius: .5rem; /* جعل الزوايا مستديرة */
+    border: 2px solid var(--second-color); /* تحديد لون الإطار */
+    outline: none; /* إزالة التحديد الأزرق عند النقر */
+    margin-bottom: var(--mb-4); /* إضافة هامش سفلي */
+    transition: border .3s; /* إضافة تأثير عند تغيير لون الإطار */
+    resize: none; /* منع تغيير حجم مربع النص */
+}
+
+/* تغيير لون الإطار عند التركيز على الإدخال */
+.contact__input:focus {
+    border: 2px solid var(--first-color);
+}
+
+/* تنسيق زر الإرسال */
+.contact__button {
+    display: block;
+    border: none;
+    outline: none;
+    font-size: var(--normal-font-size);
+    cursor: pointer;
+    margin-left: auto;
+}
+
+/* ===== FOOTER - تذييل الصفحة ===== */
+.footer {
+    background-color: var(--second-color); /* لون الخلفية */
+    color: #fff; /* لون النص */
+    text-align: center; /* محاذاة النص في الوسط */
+    font-weight: var(--font-semi); /* تحديد سماكة الخط */
+    padding: 2rem 0; /* تحديد الهوامش العلوية والسفلية */
+}
+
+/* تنسيق عنوان الفوتر */
+.footer__title {
+    font-size: 2rem; /* تحديد حجم العنوان */
+    margin-bottom: var(--mb-4); /* إضافة هامش سفلي */
+}
+
+/* تنسيق أيقونات التواصل الاجتماعي */
+.footer__social {
+    margin-bottom: var(--mb-4); /* إضافة تباعد سفلي */
+}
+
+/* تصميم أيقونات الفوتر */
+.footer__icon {
+    font-size: 1.5rem; /* تكبير حجم الأيقونة */
+    color: #fff; /* تعيين لون الأيقونة */
+    margin: 0 var(--mb-2); /* تحديد التباعد بين الأيقونات */
+    transition: color .3s; /* إضافة تأثير عند تغيير اللون */
+}
+
+/* تغيير لون الأيقونة عند تمرير الماوس */
+.footer__icon:hover {
+    color: var(--first-color);
+}
+
+/* تنسيق النص الصغير في الفوتر */
+.footer__copy {
+    font-size: var(--smaller-font-size);
+}
+/* ===== MEDIA QUERIES - استجابة التصميم للأحجام المختلفة =====*/
+
+/* شاشات صغيرة جدًا (أقل من 320px) */
+@media screen and (max-width: 320px) {
+    .home {
+        row-gap: 2rem; /* تقليل المسافة بين العناصر */
+    }
+    .home__img {
+        width: 200px; /* تصغير حجم صورة المستخدم */
+    }
+}
+
+/* شاشات صغيرة (من 576px فأعلى) */
+@media screen and (min-width: 576px) {
+    .home {
+        padding: 4rem 0 2rem; /* تعديل التباعد العلوي والسفلي */
+    }
+    .home__social {
+        padding-top: 0;
+        padding-bottom: 2.5rem;
+        flex-direction: row; /* تغيير الاتجاه إلى أفقي */
+        align-self: flex-end; /* محاذاة العناصر في النهاية */
+    }
+    .home__social-icon {
+        margin-bottom: 0;
+        margin-right: var(--mb-4); /* إضافة مسافة بين الأيقونات */
+    }
+    .home__img {
+        width: 300px; /* زيادة حجم صورة المستخدم */
+        bottom: 25%;
+    }
+    .about__container {
+        grid-template-columns: repeat(2, 1fr); /* تقسيم القسم إلى عمودين */
+        align-items: center;
+        text-align: initial; /* محاذاة النص لليسار */
+    }
+    .skills__container {
+        grid-template-columns: .7fr; /* تعديل توزيع الأعمدة */
+        justify-content: center; /* توسيط المحتوى */
+        column-gap: 1rem; /* إضافة مسافة بين الأعمدة */
+    }
+    .work__container {
+        grid-template-columns: repeat(2, 1fr); /* عرض المشاريع في عمودين */
+        column-gap: 2rem; /* مسافة بين العناصر */
+        padding-top: 2rem; /* إضافة تباعد علوي */
+    }
+    .contact__form {
+        width: 360px; /* ضبط عرض نموذج الاتصال */
+        padding-top: 2rem; /* تباعد علوي */
+    }
+    .contact__container {
+        justify-items: center; /* توسيط النموذج */
+    }
+}
+
+/* شاشات متوسطة (من 768px فأعلى) */
+@media screen and (min-width: 768px) {
+    body {
+        margin: 0;
+    }
+    .section {
+        padding-top: 4rem;
+        padding-bottom: 3rem;
+    }
+    .section-title {
+        margin-bottom: var(--mb-6);
+    }
+    .section-title::after {
+        width: 80px; /* تكبير الخط الزخرفي تحت العنوان */
+        top: 3rem;
+    }
+    .nav {
+        height: calc(var(--header-height) + 1.5rem); /* تعديل ارتفاع شريط التنقل */
+    }
+    .nav__list {
+        display: flex; /* عرض عناصر القائمة أفقيًا */
+        padding-top: 0;
+    }
+    .nav__item {
+        margin-left: var(--mb-6); /* مسافة بين العناصر */
+        margin-bottom: 0;
+    }
+    .nav__toggle {
+        display: none; /* إخفاء زر القائمة الجانبية */
+    }
+    .nav__link {
+        color: var(--second-color); /* تغيير لون الروابط */
+    }
+    .home {
+        padding: 8rem 0 2rem; /* زيادة المسافة العلوية */
+    }
+    .home__img {
+        width: 400px;
+        bottom: 10%;
+    }
+    .about__container {
+        padding-top: 2rem; /* تباعد علوي */
+    }
+    .about__img img {
+        width: 300px; /* تكبير صورة المستخدم */
+    }
+    .skills__container {
+        grid-template-columns: repeat(2, 1fr); /* عرض المهارات في عمودين */
+        column-gap: 2rem; /* مسافة بين الأعمدة */
+        align-items: center;
+        text-align: initial;
+    }
+    .work__container {
+        grid-template-columns: repeat(3, 1fr); /* عرض الأعمال في 3 أعمدة */
+        column-gap: 2rem; /* مسافة بين العناصر */
+    }
+}
+
+/* شاشات كبيرة (من 992px فأعلى) */
+@media screen and (min-width: 992px) {
+    .bd-grid {
+        margin-left: auto;
+        margin-right: auto; /* توسيط المحتوى */
+    }
+    .home {
+        padding: 10rem 0 2rem; /* زيادة المسافات العلوية */
+    }
+    .home__img {
+        width: 450px; /* تكبير صورة المستخدم */
+    }
+}
